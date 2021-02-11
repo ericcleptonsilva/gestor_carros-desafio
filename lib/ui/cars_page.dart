@@ -17,8 +17,6 @@ class CarsPage extends StatefulWidget {
 }
 
 class _CarsPageState extends State<CarsPage> {
-  ListStore listStore = ListStore();
-  final _campoOgrigatorio = "Campo Obrigatorio!";
   final _modelControl = TextEditingController();
   final _brandControl = TextEditingController();
   final _yearControl = TextEditingController();
@@ -26,7 +24,8 @@ class _CarsPageState extends State<CarsPage> {
   final _photoControl = TextEditingController();
   final _photoFocus = FocusNode();
 
-  bool _carsEdited = false;
+  ListStore _listStore = ListStore();
+
   CarsList _editedCarslist;
 
   @override
@@ -54,22 +53,17 @@ class _CarsPageState extends State<CarsPage> {
           title: Text(_editedCarslist.model ?? "Novo carro"),
           centerTitle: true,
         ),
-        floatingActionButton: Observer(
-          builder: (_) {
-            return FloatingActionButton(
-              onPressed: () {
-                listStore.isFormValid;
-                /*if (_editedCarslist.photo != null &&
-              _editedCarslist.photo.isNotEmpty) {
-            Navigator.pop(context, _editedCarslist);
-          } else {
-            FocusScope.of(context).requestFocus(_photoFocus);
-          }*/
-              },
-              child: Icon(Icons.save),
-              backgroundColor: Colors.lightBlueAccent,
-            );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            if (_editedCarslist.photo != null &&
+                _editedCarslist.photo.isNotEmpty) {
+              Navigator.pop(context, _editedCarslist);
+            } else {
+              FocusScope.of(context).requestFocus(_photoFocus);
+            }
           },
+          child: Icon(Icons.save),
+          backgroundColor: Colors.lightBlueAccent,
         ),
         body: Observer(
           builder: (_) {
@@ -103,9 +97,10 @@ class _CarsPageState extends State<CarsPage> {
                   ),
                   TextField(
                     controller: _modelControl,
-                    decoration: InputDecoration(labelText: "Modelo de carro:"),
+                    decoration: InputDecoration(
+                        labelText: "Modelo de carro:",
+                        errorText: _listStore.modelError),
                     onChanged: (text) {
-                      _carsEdited = true;
                       setState(() {
                         _editedCarslist.model = text;
                       });
@@ -113,29 +108,29 @@ class _CarsPageState extends State<CarsPage> {
                   ),
                   TextField(
                     controller: _brandControl,
-                    decoration: InputDecoration(labelText: "Frabricante:"),
+                    decoration: InputDecoration(
+                        labelText: "Frabricante:",
+                        errorText: _listStore.brandError),
                     onChanged: (text) {
-                      _carsEdited = true;
                       _editedCarslist.brand = text;
                     },
                   ),
                   TextField(
                     controller: _yearControl,
-                    decoration:
-                        InputDecoration(labelText: "Ano de Fabricação:"),
+                    decoration: InputDecoration(
+                        labelText: "Ano de Fabricação:",
+                        errorText: _listStore.yearError),
                     onChanged: (text) {
-                      _carsEdited = true;
                       _editedCarslist.year = text;
                     },
                     keyboardType: TextInputType.number,
                   ),
                   TextField(
                     controller: _priceControl,
-                    decoration: InputDecoration(labelText: "Preço:"),
+                    decoration: InputDecoration(
+                        labelText: "Preço:", errorText: _listStore.priceError),
                     onChanged: (text) {
-                      _carsEdited = true;
                       _editedCarslist.price = text;
-                      listStore.setPrice;
                     },
                     keyboardType: TextInputType.number,
                   ),
