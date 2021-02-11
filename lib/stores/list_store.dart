@@ -11,7 +11,6 @@ abstract class _ListStore with Store {
   String brand;
   String year;
   String price;
-  String CarsList;
 
   @action
   void setPhoto(String value) => photo = value;
@@ -35,11 +34,11 @@ abstract class _ListStore with Store {
       return "Nome muito Curto";
   }
 
-  bool get modelValid => model != null && model.length > 2;
+  bool get modelValid => model == null && model.length > 2;
   String get modelError {
     if (model == null || modelValid)
       return null;
-    else if (model.isEmpty)
+    else if (model.isNotEmpty)
       return "Campo obrigatóri!";
     else
       return "Nome muito Curto";

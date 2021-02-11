@@ -1,3 +1,4 @@
+/*
 import 'package:dio/dio.dart';
 
 class CacheIntercepertor extends InterceptorsWrapper {
@@ -14,3 +15,4 @@ class CacheIntercepertor extends InterceptorsWrapper {
     return super.onResponse(response);
   }
 }
+*/

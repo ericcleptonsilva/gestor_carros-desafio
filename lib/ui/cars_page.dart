@@ -112,7 +112,9 @@ class _CarsPageState extends State<CarsPage> {
                         labelText: "Frabricante:",
                         errorText: _listStore.brandError),
                     onChanged: (text) {
-                      _editedCarslist.brand = text;
+                      setState(() {
+                        _editedCarslist.brand = text;
+                      });
                     },
                   ),
                   TextField(
@@ -121,7 +123,9 @@ class _CarsPageState extends State<CarsPage> {
                         labelText: "Ano de Fabricação:",
                         errorText: _listStore.yearError),
                     onChanged: (text) {
-                      _editedCarslist.year = text;
+                      setState(() {
+                        _editedCarslist.year = text;
+                      });
                     },
                     keyboardType: TextInputType.number,
                   ),
@@ -130,7 +134,9 @@ class _CarsPageState extends State<CarsPage> {
                     decoration: InputDecoration(
                         labelText: "Preço:", errorText: _listStore.priceError),
                     onChanged: (text) {
-                      _editedCarslist.price = text;
+                      setState(() {
+                        _editedCarslist.price = text;
+                      });
                     },
                     keyboardType: TextInputType.number,
                   ),
