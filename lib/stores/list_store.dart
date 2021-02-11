@@ -11,6 +11,7 @@ abstract class _ListStore with Store {
   String brand;
   String year;
   String price;
+  String CarsList;
 
   @action
   void setPhoto(String value) => photo = value;
