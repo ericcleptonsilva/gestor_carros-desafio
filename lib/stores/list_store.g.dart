@@ -9,13 +9,12 @@ part of 'list_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ListStore on _ListStore, Store {
-  Computed<bool> _$isFormValidComputed;
+  Computed<bool> _$photoValidComputed;
 
   @override
-  bool get isFormValid =>
-      (_$isFormValidComputed ??= Computed<bool>(() => super.isFormValid,
-              name: '_ListStore.isFormValid'))
-          .value;
+  bool get photoValid => (_$photoValidComputed ??=
+          Computed<bool>(() => super.photoValid, name: '_ListStore.photoValid'))
+      .value;
 
   final _$photoAtom = Atom(name: '_ListStore.photo');
 
@@ -49,7 +48,7 @@ mixin _$ListStore on _ListStore, Store {
   String toString() {
     return '''
 photo: ${photo},
-isFormValid: ${isFormValid}
+photoValid: ${photoValid}
     ''';
   }
 }
